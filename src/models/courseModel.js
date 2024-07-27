@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Employer = require('./EmployersModel');
+const mongoose = require("mongoose");
+const Employer = require("./EmployersModel");
 
 const courseSchema = mongoose.Schema(
   {
@@ -10,11 +10,6 @@ const courseSchema = mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
-    },
-    employerID: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Employer',
       required: true,
     },
     instructor: {
@@ -29,8 +24,27 @@ const courseSchema = mongoose.Schema(
       type: Date,
       required: true,
     },
+    certificate: {
+      type: String,
+      required: true,
+    },
+    FAQs: {
+      teype: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    ratingAverage: {
+      type: Number,
+      default: 4.5,
+      min: [1, "Rating Average at lest should be greater than 1"],
+      max: [5, "Rating Average at lest should be smaller than 5"],
+      set: (val) => Math.round(val * 10) / 10,
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Course', courseSchema);
+module.exports = mongoose.model("Course", courseSchema);
