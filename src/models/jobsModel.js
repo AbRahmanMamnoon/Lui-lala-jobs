@@ -48,9 +48,12 @@ const JobSchema = new mongoose.Schema(
       ref: "Employeer",
     },
     discription: {
-      
       type: String,
       required: [true, "Plesse add yure job discription"],
+    },
+    active: {
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }
