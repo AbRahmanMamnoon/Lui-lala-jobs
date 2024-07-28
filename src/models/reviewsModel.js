@@ -4,7 +4,6 @@ const User = require("./userModel");
 
 const reviewsSchema = mongoose.Schema(
   {
-    reviewerName: String,
     reviewText: String,
     rating: Number,
     userId: {
@@ -16,6 +15,15 @@ const reviewsSchema = mongoose.Schema(
       ref: "Course",
       required: true, // this field is required as a foreign key referencing the Course model
     },
+    ratings: {
+      type: Number,
+      min: 1,
+      max: 5,
+    },
+    slug: String,
   },
   { timestamps: true }
 );
+
+const review = mongoose.model("Reviews", reviewsSchema);
+module.exports = review;

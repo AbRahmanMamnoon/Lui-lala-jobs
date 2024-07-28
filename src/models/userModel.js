@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["admin", "Employeer", "jobseeker"],
+      enum: ["admin", "jobseeker"],
       default: "jobseeker",
     },
     isActive: {
@@ -38,3 +38,6 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
