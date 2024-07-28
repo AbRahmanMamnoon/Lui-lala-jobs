@@ -1,7 +1,7 @@
-const { query } = require("express");
-const Job = require("../models/jobsModel");
+import { query } from "express";
+import { find, distinct } from "../models/jobsModel";
 
-exports.findJobs = async (req, res) => {
+export async function findJobs(req, res) {
   try {
     const {
       title,
@@ -62,7 +62,7 @@ exports.findJobs = async (req, res) => {
       queryObject.company = { $regex: company, $options: "i" };
     }
 
-    const jobs = await Job.find(queryObject);
+    const jobs = await find(queryObject);
     res.status(200).json({
       length: jobs.length,
       jobs,
@@ -70,28 +70,28 @@ exports.findJobs = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+}
 // This function FOR to get all industry jobs
-exports.getIndustries = async (req, res) => {
-  const industries = await Job.distinct("industry");
+export async function getIndustries(req, res) {
+  const industries = await distinct("industry");
   res.status(200).json({
     length: industries.length,
     industries,
   });
-};
+}
 
-exports.getCompanys = async (req, res) => {
-  const companys = await Job.distinct("company");
+export async function getCompanys(req, res) {
+  const companys = await distinct("company");
   res.status(200).json({
     length: companys.length,
     companys,
   });
-};
+}
 
-exports.getLocations = async (req, res) => {
-  const locations = await Job.distinct("location");
+export async function getLocations(req, res) {
+  const locations = await distinct("location");
   res.status(200).json({
     length: locations.length,
     locations,
   });
-};
+}
