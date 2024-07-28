@@ -16,14 +16,6 @@ const courseSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    startDate: {
-      type: Date,
-      required: true,
-    },
-    endDate: {
-      type: Date,
-      required: true,
-    },
     certificate: {
       type: String,
       required: true,
@@ -47,4 +39,5 @@ const courseSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Course", courseSchema);
+const Course = mongoose.model("Course", courseSchema);
+module.exports = Course;

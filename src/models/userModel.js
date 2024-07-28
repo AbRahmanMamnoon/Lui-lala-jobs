@@ -30,7 +30,11 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: true,
     },
-
+    image: {
+      type: String,
+      required: [true, "Please provide user image"],
+      default: "default-user-image.jpg",
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
   },
