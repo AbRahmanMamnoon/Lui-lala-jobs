@@ -5,7 +5,7 @@ import asyncHandler from '../middlewares/asyncHandler.js';
 import generateToken from '../utils/create-token.js';
 
 const createUser = asyncHandler(async (req, res) => {
-  const { fullName, email, password, isAdmin, roll, image } = req.body;
+  const { fullName, email, password, isAdmin, image } = req.body;
 
   if ((!fullName || !email, !password)) {
     throw new Error('Please fill all the fields');
@@ -57,6 +57,9 @@ const loginUser = asyncHandler(async (req, res) => {
         isAdmin: currentUser.isAdmin,
       });
     }
+  } else {
+    res.status(401);
+    throw new Error('You are not logged in pleas log in!');
   }
 });
 
