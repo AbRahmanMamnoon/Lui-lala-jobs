@@ -23,9 +23,8 @@ const userSchema = mongoose.Schema(
       //match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
     },
     isAdmin: {
-      type: String,
-      enum: ['admin', 'jobseeker'],
-      default: 'jobseeker',
+      type: Boolean,
+      default: 'false',
     },
     isActive: {
       type: Boolean,
