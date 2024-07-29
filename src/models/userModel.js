@@ -7,12 +7,6 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    password: {
-      type: String,
-      required: true,
-      minlength: 8,
-      //match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-    },
     email: {
       type: String,
       required: true,
@@ -21,6 +15,12 @@ const userSchema = mongoose.Schema(
         validator: validator.isEmail,
         message: 'Please enter a valid email address.',
       },
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 8,
+      //match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
     },
     role: {
       type: String,
