@@ -17,16 +17,16 @@ const createUser = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
   const currentUser = new User({ fullName, email, password: hashedPassword });
-
   try {
     await currentUser.save();
-    generateToken(res, currentUser._id);
 
+    generateToken(res, currentUser._id);
     res.status(201).json({
       _id: currentUser._id,
       fullName: currentUser.fullName,
       email: currentUser.email,
       isAdmin: currentUser.isAdmin,
+      image: currentUser.image,
     });
   } catch (error) {
     res.status(400);
