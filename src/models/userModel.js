@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema(
       minlength: 8,
       //match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
     },
-    role: {
+    isAdmin: {
       type: String,
       enum: ['admin', 'jobseeker'],
       default: 'jobseeker',
@@ -33,7 +33,6 @@ const userSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, 'Please provide user image'],
       default: 'default-user-image.jpg',
     },
     resetPasswordToken: String,
