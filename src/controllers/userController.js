@@ -5,9 +5,9 @@ import asyncHandler from '../middlewares/asyncHandler.js';
 import generateToken from '../utils/create-token.js';
 
 const createUser = asyncHandler(async (req, res) => {
-  const { username, email, password, isAdmin } = req.body;
+  const { fullName, email, password, isAdmin, roll, image } = req.body;
 
-  if ((!username || !email, !password)) {
+  if ((!fullName || !email, !password)) {
     throw new Error('Please fill all the fields');
   }
 
@@ -16,7 +16,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const currentUser = new User({ username, email, password: hashedPassword });
+  const currentUser = new User({ fullName, email, password: hashedPassword });
 
   try {
     await currentUser.save();
@@ -24,7 +24,7 @@ const createUser = asyncHandler(async (req, res) => {
 
     res.status(201).json({
       _id: currentUser._id,
-      username: currentUser.username,
+      fullName: currentUser.fullName,
       email: currentUser.email,
       isAdmin: currentUser.isAdmin,
     });
@@ -42,19 +42,21 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const currentUser = await User.findOne({ email });
 
-  let isPasswordValid = 0;
   if (currentUser) {
-    isPasswordValid = await bcrypt.compare(password, currentUser.password);
-  }
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      currentUser.password
+    );
 
-  if (isPasswordValid) {
-    generateToken(res, currentUser._id);
-    res.status(200).json({
-      _id: currentUser._id,
-      username: currentUser.username,
-      email: currentUser.email,
-      isAdmin: currentUser.isAdmin,
-    });
+    if (isPasswordValid) {
+      generateToken(res, currentUser._id);
+      res.status(200).json({
+        _id: currentUser._id,
+        fullName: currentUser.fullName,
+        email: currentUser.email,
+        isAdmin: currentUser.isAdmin,
+      });
+    }
   }
 });
 
@@ -79,7 +81,7 @@ const getCurrentUserProfile = asyncHandler(async (req, res) => {
   if (currentUser) {
     res.status(200).json({
       _id: currentUser._id,
-      username: currentUser.username,
+      fullName: currentUser.fullName,
       email: currentUser.email,
     });
   } else {
@@ -89,11 +91,11 @@ const getCurrentUserProfile = asyncHandler(async (req, res) => {
 });
 
 const updateCurrentUserProfile = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { fullName, email, password } = req.body;
   const currentUser = await User.findById(req.user._id);
 
   if (currentUser) {
-    currentUser.username = username || currentUser.username;
+    currentUser.fullName = fullName || currentUser.fullName;
     currentUser.email = email || currentUser.email;
 
     if (password) {
@@ -104,7 +106,7 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
 
     await currentUser.save();
     res.status(200).json({
-      username: currentUser.username,
+      fullName: currentUser.fullName,
       email: currentUser.email,
       password: currentUser.password,
     });
@@ -123,18 +125,18 @@ const findUserByID = asyncHandler(async (req, res) => {
 });
 
 const updateUserById = asyncHandler(async (req, res) => {
-  const { username, email, isAdmin } = req.body;
+  const { fullName, email, isAdmin } = req.body;
   const user = await User.findById(req.params.id);
 
   if (user) {
-    user.username = username || user.username;
+    user.fullName = fullName || user.fullName;
     user.email = email || user.email;
     user.isAdmin = Boolean(isAdmin);
 
     const updatedUser = await user.save();
     res.status(200).json({
       _id: updatedUser._id,
-      username: updatedUser.username,
+      fullName: updatedUser.fullName,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
     });
