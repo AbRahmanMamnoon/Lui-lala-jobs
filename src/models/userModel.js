@@ -1,16 +1,11 @@
-const mongoose = require("mongoose");
-const validator = require("validator");
+import mongoose from 'mongoose';
+import validator from 'validator';
+
 const userSchema = mongoose.Schema(
   {
     fullName: {
       type: String,
       required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-      minlength: 8,
-      //match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
     },
     email: {
       type: String,
@@ -18,13 +13,18 @@ const userSchema = mongoose.Schema(
       unique: true,
       validate: {
         validator: validator.isEmail,
-        message: "Please enter a valid email address.",
+        message: 'Please enter a valid email address.',
       },
     },
-    role: {
+    password: {
       type: String,
-      enum: ["admin", "jobseeker"],
-      default: "jobseeker",
+      required: true,
+      minlength: 8,
+      //match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: 'false',
     },
     isActive: {
       type: Boolean,
@@ -32,8 +32,7 @@ const userSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, "Please provide user image"],
-      default: "default-user-image.jpg",
+      default: 'default-user-image.jpg',
     },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
@@ -42,6 +41,6 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

@@ -1,6 +1,6 @@
-const Employer = require("../models/EmployersModel");
+import { create, find, findById, findByIdAndUpdate, findByIdAndDelete } from "../models/EmployersModel";
 
-exports.createEmployer = async (req, res) => {
+export async function createEmployer(req, res) {
   try {
     const {
       empName,
@@ -14,7 +14,7 @@ exports.createEmployer = async (req, res) => {
       // userId,
     } = req.body;
 
-    const employer = await Employer.create({
+    const employer = await create({
       empName,
       natureContent,
       industry,
@@ -30,11 +30,11 @@ exports.createEmployer = async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
-};
+}
 
-exports.getEmployers = async (req, res) => {
+export async function getEmployers(req, res) {
   try {
-    const employers = await Employer.find();
+    const employers = await find();
     res.status(200).json({
       length: employers.length,
       success: true,
@@ -46,11 +46,11 @@ exports.getEmployers = async (req, res) => {
       error: error.message,
     });
   }
-};
+}
 
-exports.getEmployer = async (req, res) => {
+export async function getEmployer(req, res) {
   try {
-    const employer = await Employer.findById(req.params.id);
+    const employer = await findById(req.params.id);
     if (!employer) {
       return res
         .status(404)
@@ -60,11 +60,11 @@ exports.getEmployer = async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
-};
+}
 
-exports.updateEmployer = async (req, res) => {
+export async function updateEmployer(req, res) {
   try {
-    const employer = await Employer.findByIdAndUpdate(req.params.id, req.body, {
+    const employer = await findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -80,11 +80,11 @@ exports.updateEmployer = async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
-};
+}
 
-exports.deleteEmployer = async (req, res) => {
+export async function deleteEmployer(req, res) {
   try {
-    const employer = await Employer.findByIdAndDelete(req.params.id);
+    const employer = await findByIdAndDelete(req.params.id);
     if (!employer) {
       return res
         .status(404)
@@ -96,4 +96,4 @@ exports.deleteEmployer = async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
-};
+}
