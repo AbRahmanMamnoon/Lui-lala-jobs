@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 
-import Job from './jobsModel';
+import Job from './jobsModel.js';
 
 const userSchema = mongoose.Schema(
   {
@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema(
     appliedJobs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Job',
+        ref: 'jobsModel',
       },
     ],
     resetPasswordToken: String,
