@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const User = require("./userModel");
+import mongoose from "mongoose";
+import User from "../controllers/courseController.js";
 
 const employerSchema = new mongoose.Schema(
   {
@@ -45,4 +45,5 @@ const employerSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Employer", employerSchema);
+const Employeer = mongoose.model("Employer", employerSchema);
+export default Employeer;

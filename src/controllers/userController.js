@@ -161,7 +161,7 @@ const deleteUserByID = asyncHandler(async (req, res) => {
     }
 
     await User.deleteOne({ _id: user._id });
-    res.status(204).jrtyson({ message: "User removed successfully" });
+    res.status(204).json({ message: "User removed successfully" });
   } else {
     res.status(404).json({ message: "User not found!" });
   }

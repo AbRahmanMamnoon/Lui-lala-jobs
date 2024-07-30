@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-const Employer = require("./EmployersModel");
+import mongoose from "mongoose";
 
-const courseSchema = mongoose.Schema(
+const courseSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -21,7 +20,7 @@ const courseSchema = mongoose.Schema(
       required: true,
     },
     FAQs: {
-      teype: String,
+      type: String, // The type was misspelled as "teype"
       required: true,
     },
     price: {
@@ -31,13 +30,13 @@ const courseSchema = mongoose.Schema(
     ratingAverage: {
       type: Number,
       default: 4.5,
-      min: [1, "Rating Average at lest should be greater than 1"],
-      max: [5, "Rating Average at lest should be smaller than 5"],
-      set: (val) => Math.round(val * 10) / 10,
+      min: [1, "Rating Average at least should be greater than 1"],
+      max: [5, "Rating Average at least should be smaller than 5"],
+      set: (val) => Math.round(val * 10) / 10, // This is a valid set function
     },
   },
   { timestamps: true }
 );
 
 const Course = mongoose.model("Course", courseSchema);
-module.exports = Course;
+export default Course;

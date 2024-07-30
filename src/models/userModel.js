@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import validator from 'validator';
+import mongoose from "mongoose";
+import validator from "validator";
 
 const userSchema = mongoose.Schema(
   {
@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema(
       unique: true,
       validate: {
         validator: validator.isEmail,
-        message: 'Please enter a valid email address.',
+        message: "Please enter a valid email address.",
       },
     },
     password: {
@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema(
     },
     isAdmin: {
       type: Boolean,
-      default: 'false',
+      default: "false",
     },
     isActive: {
       type: Boolean,
@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      default: 'default-user-image.jpg',
+      default: "default-user-image.jpg",
     },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
@@ -41,6 +41,6 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Employeer = require("./EmployersModel");
+import mongoose from "mongoose";
+import Employeer from "./EmployersModel";
 
 const JobSchema = new mongoose.Schema(
   {
@@ -61,4 +61,5 @@ const JobSchema = new mongoose.Schema(
 
 // Define a schema for image metadata
 
-module.exports = mongoose.model("Job", JobSchema);
+const job = mongoose.model("Job", JobSchema);
+export default job;
