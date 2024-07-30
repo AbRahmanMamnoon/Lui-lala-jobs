@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 
+import Job from './jobsModel';
+
 const userSchema = mongoose.Schema(
   {
     fullName: {
@@ -34,6 +36,15 @@ const userSchema = mongoose.Schema(
       type: String,
       default: 'default-user-image.jpg',
     },
+    cv: {
+      type: String,
+    },
+    appliedJobs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job',
+      },
+    ],
     resetPasswordToken: String,
     resetPasswordExpires: Date,
   },
