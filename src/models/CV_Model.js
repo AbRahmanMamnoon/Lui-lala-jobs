@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const cvSchema = mongoose.Schema({
   summary: {
@@ -66,12 +66,12 @@ const cvSchema = mongoose.Schema({
       required: true,
     },
   ],
-  cirtifications: [
+  certifications: [
     {
       type: String,
       required: true,
     },
   ],
 });
-const CV = mongoose.model("CV", cvSchema);
+const CV = mongoose.model('CV', cvSchema);
 module.exports = CV;
