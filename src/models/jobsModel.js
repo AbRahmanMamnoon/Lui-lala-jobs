@@ -49,7 +49,7 @@ const JobSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, 'Plesse add yure job discription'],
+      required: [true, 'Please add your job description'],
     },
     active: {
       type: Boolean,
