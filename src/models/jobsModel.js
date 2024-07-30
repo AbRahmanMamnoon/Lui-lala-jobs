@@ -1,55 +1,55 @@
-const mongoose = require("mongoose");
-const Employeer = require("./EmployersModel");
+const mongoose = require('mongoose');
+const Employeer = require('./EmployersModel');
 
 const JobSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, "Please provide title"],
+      required: [true, 'Please provide title'],
     },
     keyword: {
       type: String,
-      required: [true, "Please provide keyword"],
+      required: [true, 'Please provide keyword'],
     },
     country: {
       type: String,
-      required: [true, "Please provide country"],
+      required: [true, 'Please provide country'],
     },
     city: {
       type: String,
-      required: [true, "Please provide city"],
+      required: [true, 'Please provide city'],
     },
     minSalary: {
       type: Number,
-      required: [true, "Please provide minimum salary"],
+      required: [true, 'Please provide minimum salary'],
     },
     maxSalary: {
       type: Number,
-      required: [true, "Please provide maximum salary"],
+      required: [true, 'Please provide maximum salary'],
     },
     jobType: {
       type: String,
-      enum: ["full-time", "part-time", "remote", "internship"],
-      default: "full-time",
+      enum: ['full-time', 'part-time', 'remote', 'internship'],
+      default: 'full-time',
     },
 
     salaryType: {
       type: String,
-      enum: ["hourly", "daily", "monthly"],
+      enum: ['hourly', 'daily', 'monthly'],
       // default: "monthly",
       required: true,
     },
     location: {
       type: String,
-      required: [true, "Please provide location"],
+      required: [true, 'Please provide location'],
     },
     empId: {
       type: mongoose.Schema.ObjectId,
-      ref: "Employeer",
+      ref: 'Employeer',
     },
-    discription: {
+    description: {
       type: String,
-      required: [true, "Plesse add yure job discription"],
+      required: [true, 'Plesse add yure job discription'],
     },
     active: {
       type: Boolean,
@@ -61,4 +61,4 @@ const JobSchema = new mongoose.Schema(
 
 // Define a schema for image metadata
 
-module.exports = mongoose.model("Job", JobSchema);
+module.exports = mongoose.model('Job', JobSchema);
