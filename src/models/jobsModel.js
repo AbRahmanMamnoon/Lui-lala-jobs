@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import Employeer from './EmployersModel.js';
+
 
 const JobSchema = new mongoose.Schema(
   {
@@ -60,5 +59,4 @@ const JobSchema = new mongoose.Schema(
 );
 
 // Define a schema for image metadata
-const jobsModel = mongoose.model('Job', JobSchema);
-export default jobsModel;
+

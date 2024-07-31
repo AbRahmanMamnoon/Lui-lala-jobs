@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import User from './userModel.js';
+
 
 const employerSchema = new mongoose.Schema(
   {
@@ -45,4 +44,4 @@ const employerSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model('Employer', employerSchema);
+

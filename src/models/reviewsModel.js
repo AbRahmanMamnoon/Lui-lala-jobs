@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
-const Course = require("./courseModel");
-const User = require("./userModel");
+import mongoose from "mongoose.js";
+import Course from "./courseModel.js";
+import User from "./userModel.js";
 
-const reviewsSchema = mongoose.Schema(
+const reviewsSchema = new mongoose.Schema(
   {
     reviewText: String,
     rating: Number,
@@ -26,4 +26,4 @@ const reviewsSchema = mongoose.Schema(
 );
 
 const review = mongoose.model("Reviews", reviewsSchema);
-module.exports = review;
+export default review;

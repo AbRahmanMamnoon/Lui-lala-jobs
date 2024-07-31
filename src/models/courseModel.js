@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import Employer from './EmployersModel';
+
 
 const courseSchema = mongoose.Schema(
   {
@@ -21,7 +20,7 @@ const courseSchema = mongoose.Schema(
       required: true,
     },
     FAQs: {
-      teype: String,
+      type: String, // The type was misspelled as "teype"
       required: true,
     },
     price: {
@@ -31,13 +30,10 @@ const courseSchema = mongoose.Schema(
     ratingAverage: {
       type: Number,
       default: 4.5,
-      min: [1, 'Rating Average at lest should be greater than 1'],
-      max: [5, 'Rating Average at lest should be smaller than 5'],
-      set: (val) => Math.round(val * 10) / 10,
+
     },
   },
   { timestamps: true }
 );
 
-const Course = model('Course', courseSchema);
-export default Course;
+
