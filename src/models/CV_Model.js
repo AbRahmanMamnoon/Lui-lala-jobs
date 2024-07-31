@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 
 const cvSchema = mongoose.Schema({
   summary: {
@@ -66,12 +65,11 @@ const cvSchema = mongoose.Schema({
       required: true,
     },
   ],
-  cirtifications: [
+  certifications: [
     {
       type: String,
       required: true,
     },
   ],
 });
-const CV = mongoose.model("CV", cvSchema);
-export default CV;
+
