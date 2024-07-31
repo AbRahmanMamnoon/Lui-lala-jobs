@@ -13,7 +13,7 @@ const employerSchema = new mongoose.Schema(
     },
     industry: {
       type: String,
-      required: [true, "Please provide industry"],
+      required: [true, "Provide industry name "],
     },
     website: {
       type: String,
