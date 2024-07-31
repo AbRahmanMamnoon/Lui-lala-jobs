@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const cvSchema = mongoose.Schema({
   summary: {
@@ -74,4 +74,4 @@ const cvSchema = mongoose.Schema({
   ],
 });
 const CV = mongoose.model('CV', cvSchema);
-module.exports = CV;
+export default CV;
