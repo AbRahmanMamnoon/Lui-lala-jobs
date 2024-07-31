@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 import Employer from './EmployersModel';
 
-const courseSchema = Schema(
+const courseSchema = mongoose.Schema(
   {
     name: {
       type: String,
