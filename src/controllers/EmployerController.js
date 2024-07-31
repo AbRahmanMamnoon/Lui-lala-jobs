@@ -1,4 +1,10 @@
-import { create, find, findById, findByIdAndUpdate, findByIdAndDelete } from "../models/EmployersModel";
+import {
+  create,
+  find,
+  findById,
+  findByIdAndUpdate,
+  findByIdAndDelete,
+} from '../models/EmployersModel';
 
 export async function createEmployer(req, res) {
   try {
@@ -7,11 +13,10 @@ export async function createEmployer(req, res) {
       natureContent,
       industry,
       website,
-      contact_email,
-      contact_phone,
-      // logo,
+      contactEmail,
+      contactPhone,
+      logo,
       description,
-      // userId,
     } = req.body;
 
     const employer = await create({
@@ -19,11 +24,10 @@ export async function createEmployer(req, res) {
       natureContent,
       industry,
       website,
-      contact_email,
-      contact_phone,
-      // logo,
+      contactEmail,
+      contactPhone,
+      logo,
       description,
-      // userId,
     });
 
     res.status(201).json({ success: true, data: employer });
@@ -54,7 +58,7 @@ export async function getEmployer(req, res) {
     if (!employer) {
       return res
         .status(404)
-        .json({ success: false, error: "Employer not found" });
+        .json({ success: false, error: 'Employer not found' });
     }
     res.status(200).json({ success: true, data: employer });
   } catch (error) {
@@ -71,10 +75,10 @@ export async function updateEmployer(req, res) {
     if (!employer) {
       return res
         .status(404)
-        .json({ success: false, error: "Employer not found" });
+        .json({ success: false, error: 'Employer not found' });
     }
     res.status(200).json({
-      success: "Employes were successfully updated!",
+      success: 'Employes were successfully updated!',
       data: employer,
     });
   } catch (error) {
@@ -88,10 +92,10 @@ export async function deleteEmployer(req, res) {
     if (!employer) {
       return res
         .status(404)
-        .json({ success: false, error: "Employer not found" });
+        .json({ success: false, error: 'Employer not found' });
     }
     res.status(200).json({
-      success: "This Employee was successfully deleted!",
+      success: 'This Employee was successfully deleted!',
     });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
