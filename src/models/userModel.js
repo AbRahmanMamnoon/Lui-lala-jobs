@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema(
     appliedJobs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'jobsModel',
+        ref: 'Job',
       },
     ],
     resetPasswordToken: String,
