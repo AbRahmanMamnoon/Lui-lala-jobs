@@ -14,12 +14,12 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(authenticate, authorizeAdmin, getAllCourses)
+  .get(authenticate, getAllCourses)
   .post(authenticate, authorizeAdmin, createCourse);
 
 router
   .route("/:id")
-  .get(authenticate, authorizeAdmin, getCourse)
+  .get(authenticate, getCourse)
   .patch(authenticate, authorizeAdmin, updateCourse)
   .delete(authenticate, authorizeAdmin, deleteCourse);
 
