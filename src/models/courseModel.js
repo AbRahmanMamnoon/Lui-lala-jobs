@@ -1,4 +1,4 @@
-
+import mongoose from "mongoose";
 
 const courseSchema = mongoose.Schema(
   {
@@ -30,10 +30,9 @@ const courseSchema = mongoose.Schema(
     ratingAverage: {
       type: Number,
       default: 4.5,
-
     },
   },
   { timestamps: true }
 );
-
-
+const Course = mongoose.model("Course", courseSchema);
+export default Course;
