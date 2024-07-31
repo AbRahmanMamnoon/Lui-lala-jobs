@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Employer = require("./EmployersModel");
+import { Schema, model } from 'mongoose';
+import Employer from './EmployersModel';
 
-const courseSchema = mongoose.Schema(
+const courseSchema = Schema(
   {
     name: {
       type: String,
@@ -31,13 +31,13 @@ const courseSchema = mongoose.Schema(
     ratingAverage: {
       type: Number,
       default: 4.5,
-      min: [1, "Rating Average at lest should be greater than 1"],
-      max: [5, "Rating Average at lest should be smaller than 5"],
+      min: [1, 'Rating Average at lest should be greater than 1'],
+      max: [5, 'Rating Average at lest should be smaller than 5'],
       set: (val) => Math.round(val * 10) / 10,
     },
   },
   { timestamps: true }
 );
 
-const Course = mongoose.model("Course", courseSchema);
-module.exports = Course;
+const Course = model('Course', courseSchema);
+export default Course;
