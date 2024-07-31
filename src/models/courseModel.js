@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
 
-const courseSchema = new mongoose.Schema(
+
+const courseSchema = Schema(
   {
     name: {
       type: String,
@@ -30,13 +30,10 @@ const courseSchema = new mongoose.Schema(
     ratingAverage: {
       type: Number,
       default: 4.5,
-      min: [1, "Rating Average at least should be greater than 1"],
-      max: [5, "Rating Average at least should be smaller than 5"],
-      set: (val) => Math.round(val * 10) / 10, // This is a valid set function
+
     },
   },
   { timestamps: true }
 );
 
-const Course = mongoose.model("Course", courseSchema);
-export default Course;
+
