@@ -1,6 +1,6 @@
 
 
-const courseSchema = Schema(
+const courseSchema = mongoose.Schema(
   {
     name: {
       type: String,

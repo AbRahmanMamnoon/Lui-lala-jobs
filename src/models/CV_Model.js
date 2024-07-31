@@ -1,4 +1,3 @@
-
 const cvSchema = mongoose.Schema({
   summary: {
     type: String,
