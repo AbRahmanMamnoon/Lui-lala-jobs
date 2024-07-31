@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 const cvSchema = mongoose.Schema({
   summary: {
     type: String,
@@ -71,4 +72,5 @@ const cvSchema = mongoose.Schema({
     },
   ],
 });
-
+const CV = mongoose.model("CV", cvSchema);
+export default CV;
