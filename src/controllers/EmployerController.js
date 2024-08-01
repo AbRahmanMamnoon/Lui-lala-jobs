@@ -1,10 +1,5 @@
-import {
-  create,
-  find,
-  findById,
-  findByIdAndUpdate,
-  findByIdAndDelete,
-} from '../models/EmployersModel';
+import EmployerModel from '../models/EmployersModel.js';
+import generateToken from '../utils/create-token.js';
 
 export async function createEmployer(req, res) {
   try {
@@ -19,7 +14,7 @@ export async function createEmployer(req, res) {
       description,
     } = req.body;
 
-    const employer = await create({
+    const employer = await EmployerModel.create({
       empName,
       natureContent,
       industry,
@@ -29,6 +24,7 @@ export async function createEmployer(req, res) {
       logo,
       description,
     });
+    generateToken(res, employer._id);
 
     res.status(201).json({ success: true, data: employer });
   } catch (error) {
@@ -36,9 +32,9 @@ export async function createEmployer(req, res) {
   }
 }
 
-export async function getEmployers(req, res) {
+export async function getAllEmployers(req, res) {
   try {
-    const employers = await find();
+    const employers = await EmployerModel.find();
     res.status(200).json({
       length: employers.length,
       success: true,
@@ -54,7 +50,7 @@ export async function getEmployers(req, res) {
 
 export async function getEmployer(req, res) {
   try {
-    const employer = await findById(req.params.id);
+    const employer = await EmployerModel.findById(req.params.id);
     if (!employer) {
       return res
         .status(404)
@@ -68,10 +64,14 @@ export async function getEmployer(req, res) {
 
 export async function updateEmployer(req, res) {
   try {
-    const employer = await findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const employer = await EmployerModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
     if (!employer) {
       return res
         .status(404)
@@ -88,7 +88,7 @@ export async function updateEmployer(req, res) {
 
 export async function deleteEmployer(req, res) {
   try {
-    const employer = await findByIdAndDelete(req.params.id);
+    const employer = await EmployerModel.findByIdAndDelete(req.params.id);
     if (!employer) {
       return res
         .status(404)

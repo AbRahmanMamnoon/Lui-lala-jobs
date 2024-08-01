@@ -1,20 +1,25 @@
-const express = require("express");
-const employerController = require("../controllers/EmployerController");
-const router = express.Router();
+import { Router } from 'express';
+import {
+  createEmployer,
+  getAllEmployers,
+  getEmployer,
+  updateEmployer,
+  deleteEmployer,
+} from '../controllers/EmployerController.js';
+
+import { authenticate } from '../middlewares/authMiddleware.js';
+
+const router = Router();
+
+router.route('/').get(authenticate, getAllEmployers);
+router.route('/register').post(createEmployer);
 
 router
-  .route("/")
-  // Create a new employer
-  .post(employerController.createEmployer)
-  // Get all employers
-  .get(employerController.getEmployers);
-
-router
-  .route("/:id")
+  .route('/:id')
   // Get a single employer
-  .get(employerController.getEmployer)
+  .get(getEmployer)
   // Update an existing employer
-  .patch(employerController.updateEmployer)
+  .patch(updateEmployer)
   // Delete an employer
-  .delete(employerController.deleteEmployer);
-module.exports = router;
+  .delete(deleteEmployer);
+export default router;
